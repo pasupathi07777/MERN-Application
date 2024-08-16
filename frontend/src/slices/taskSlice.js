@@ -9,8 +9,9 @@ const initialState = {
 }
 
 // const PORT="http://localhost:4000/api/tasks"
-// const PORT="https://mern-application-zx99.onrender.com/api/tasks"
-const PORT=`${process.env.BACKEND_URL}/api/tasks`
+const PORT="https://mern-application-zx99.onrender.com/api/tasks"
+// const PORT=`${process.env.BACKEND_URL}/api/tasks`
+// console.log(PORT)
 
 // get 
 
