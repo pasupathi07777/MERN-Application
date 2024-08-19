@@ -51,7 +51,7 @@ const TaskList = () => {
                         {task.task.task.map((e, i) => (
 
                             <tr className='bg-gray-100 border-b border-gray-300' key={i}>
-                                {console.log(e)}
+                             
                                 <td className='border-r border-gray-300'>{i + 1}</td>
                                 <td className='border-r border-gray-300'>{e.title}</td>
                                 <td className='border-r border-gray-300'>{e.description}</td>

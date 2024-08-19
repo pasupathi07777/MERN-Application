@@ -42,12 +42,15 @@ export const postTaskFroNServer = createAsyncThunk("tasks/postTaskFroNServer", a
 })
 
 // update
+
+
 export const updateTaskFroNServer = createAsyncThunk("tasks/updateTaskFroNServer", async (task, { rejectWithValue }) => {
    
     try {
         console.log(task.id)
       
-        const responce = await axios.patch(`${PORT}/${task._id}`,task)
+        const responce = await axios.patch(`${PORT}/${task._id}`,task,{new:true})
+        // await responce.save()
         console.log(responce)
         return responce.data
     } catch (e) {
@@ -56,6 +59,7 @@ export const updateTaskFroNServer = createAsyncThunk("tasks/updateTaskFroNServer
     }
 
 })
+  
 
 // delete
 export const deleteTaskFroNServer = createAsyncThunk("tasks/deleteTaskFroNServer", async (task, { rejectWithValue }) => {
