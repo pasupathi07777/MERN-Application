@@ -56,7 +56,7 @@ const updateTask=async (req,res)=>{
         return res.status(404).json({error:"Task Not Found "})
     }
     try{
-        const updateTask=await taskModel.findByIdAndUpdate({_id:id},{title,description})
+        const updateTask=await taskModel.findByIdAndUpdate({_id:id},{title,description},{new:true})
         res.status(200).json(updateTask)
     }catch(e){
         res.status(400).json({error:e.message})
