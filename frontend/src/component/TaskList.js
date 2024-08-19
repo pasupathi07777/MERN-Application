@@ -6,7 +6,8 @@ import { deleteTaskFroNServer, getTaskFroNServer } from '../slices/taskSlice'
 import { useSelector, useDispatch } from 'react-redux'
 
 const TaskList = () => {
-    const {task} = useSelector((state) => state.task)
+    const task = useSelector((state) => state)
+    
     const dispatch = useDispatch()
 
     const ondelete = (arr) => {
@@ -33,36 +34,39 @@ const TaskList = () => {
 
     return (
 
+        <>
 
+            {task.task.isLoading===false ?
+                <table className='w-full text-center mt-2 border border-gray-300'>
+                    <thead >
+                        <tr className='border-b border-gray-300'>
+                            <th className='border-r border-gray-300'>No</th>
+                            <th className='border-r border-gray-300'>Title</th>
+                            <th className='border-r border-gray-300'>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
 
-        <table className='w-full text-center mt-2 border border-gray-300'>
-            <thead >
-                <tr className='border-b border-gray-300'>
-                    <th className='border-r border-gray-300'>No</th>
-                    <th className='border-r border-gray-300'>Title</th>
-                    <th className='border-r border-gray-300'>Description</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+                    <tbody className='mt-2 pt-2'>
+                        {task.task.task.map((e, i) => (
 
-            <tbody className='mt-2 pt-2'>
-                {task.map((e, i) => (
-                   
-                    <tr className='bg-gray-100 border-b border-gray-300' key={i}>
-                         {console.log(e)}
-                        <td className='border-r border-gray-300'>{i + 1}</td>
-                        <td className='border-r border-gray-300'>{e.title}</td>
-                        <td className='border-r border-gray-300'>{e.description}</td>
-                        <td className='flex gap-2 justify-center items-center'>
+                            <tr className='bg-gray-100 border-b border-gray-300' key={i}>
+                                {console.log(e)}
+                                <td className='border-r border-gray-300'>{i + 1}</td>
+                                <td className='border-r border-gray-300'>{e.title}</td>
+                                <td className='border-r border-gray-300'>{e.description}</td>
+                                <td className='flex gap-2 justify-center items-center'>
 
-                            <PopUp _id={e._id}  />
-                            <button onClick={() => ondelete(e._id)}>{icon.delete}</button>
-                        </td>
-                    </tr>
-                ))}
+                                    <PopUp _id={e._id} />
+                                    <button onClick={() => ondelete(e._id)}>{icon.delete}</button>
+                                </td>
+                            </tr>
+                        ))}
 
-            </tbody>
-        </table>
+                    </tbody>
+                </table> : <p className='text-center'>{"loading..."}</p>
+
+            }</>
 
     )
 }
